@@ -1,0 +1,47 @@
+.UserCard{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 300px;
+  box-shadow: 0 0 10px #3F3F3F;
+  margin: 20px;
+  padding: 20px;
+  >div:first-child{
+    display: flex;
+    flex-direction: column;
+  }
+  >div:last-child{
+    padding: 10px;
+  }
+  >div:last-child>img{
+    border-radius: 50%;
+    width: 100px;
+  }
+  .name{
+    font-size: 24px;
+  }
+  .username{
+    font-size: 16px;
+    color: #768CFF;
+    margin-bottom: 20px;
+  }
+  .address{
+    font-size: 16px;
+
+  }
+  .phone{
+    font-size: 16px;
+  }
+  button{
+    background: #768CFF;
+    color: #fff;
+    border: none;
+    padding: 5px 0;
+    margin-top: 10px;
+    transition: .5s;
+    cursor: pointer;
+    &:hover{
+      background: #2b3a8f;
+    }
+  }
+}
