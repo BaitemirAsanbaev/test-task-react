@@ -1,0 +1,8 @@
+.UsersList{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  >div{
+    flex: 0 0 33%;
+  }
+}
