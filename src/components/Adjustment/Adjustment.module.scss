@@ -1,0 +1,25 @@
+.Adjustment{
+  flex-direction: column;
+  display: flex;
+  align-items: start;
+  flex: 0 0 20%;
+  button{
+    background: rgb(118,140,255);
+    border: none;
+    padding: 10px 15px;
+    margin: 10px 0;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: .5s;
+    &:hover{
+      filter: brightness(.8);
+    }
+    &:first-of-type{
+      background: linear-gradient(90deg, rgba(118,140,255,1) 0%, rgba(231,94,94,1) 100%);
+    }
+  }
+  >div{
+    margin: 10px 0;
+  }
+}

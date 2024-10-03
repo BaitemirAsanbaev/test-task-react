@@ -2,6 +2,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: start;
+  max-width: 100%;
+  margin: 0 auto;
   >div{
     flex: 0 0 33%;
   }
