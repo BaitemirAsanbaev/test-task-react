@@ -10,7 +10,6 @@ type UsersState = {
     error: string | null
 };
 
-// Define the initial state using that type
 const initialState: UsersState = {
     users: [],
     loading: false,
@@ -23,26 +22,44 @@ export const userSlice = createSlice({
     name: 'users',
     initialState,
     reducers: {
-        test:()=>{
-
-        }
+        sortByAge: (state: UsersState, action:PayloadAction<string>) => {
+            state.users = [...state.users].sort((a, b) => {
+                if (action.payload === "upwards") return a.age - b.age
+                if (action.payload === "downwards") return b.age - a.age
+            });
+            console.log("sorted by age")
+        },
+        sortByName: (state: UsersState, action:PayloadAction<string>)=>{
+            state.users = [...state.users].sort((a, b)=>{
+                if (action.payload === "downwards") return a.name.localeCompare(b.name)
+                if (action.payload === "upwards") return b.name.localeCompare(a.name)
+            })
+            console.log("sorted by name")
+        },
+        filterByRole:(state: UsersState, action:PayloadAction<string>)=>{
+            state.users = JSON.parse(localStorage.getItem("users"))
+            state.users = state.users.filter((user)=>user.role === action.payload)
+            console.log("filtered by role")
+        },
+        filterByVerification:(state: UsersState)=>{
+            state.users = JSON.parse(localStorage.getItem("users"))
+            state.users = state.users.filter((user)=>user.verified)
+            console.log("filtered by ver")
+        },
     },
     extraReducers: (builder) => {
-        // Handle the 'pending' state (when the request is in progress)
         builder.addCase(fetchUsers.pending, (state:UsersState) => {
             state.loading = true;
             state.error = null;
         });
 
-        // Handle the 'fulfilled' state (when the request is successful)
         builder.addCase(fetchUsers.fulfilled, (state:UsersState, action:PayloadAction<IUser[]>) => {
-            state.loading = false;
-            console.log(action.payload)
-            state.users = action.payload; // Update the state with the fetched users
+            state.loading = false
+            state.users = action.payload;
         });
 
-        // Handle the 'rejected' state (if the request fails)
         builder.addCase(fetchUsers.rejected, (state:UsersState, action: unknown)=>{
+            state.loading = false;
             state.error = action.error.message || 'Failed to fetch users';
         });
     }
@@ -51,5 +68,7 @@ export const userSlice = createSlice({
 
 
 export const usersReducer = userSlice.reducer;
+
+export const {sortByAge, sortByName, filterByRole, filterByVerification} = userSlice.actions
 
 export const selectUsers = (state: RootState) => state.users;
