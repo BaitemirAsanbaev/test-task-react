@@ -1,7 +1,14 @@
 import classes from './Adjustment.module.scss'
 import {FormControl, InputLabel, MenuItem, Select, TextField} from "@mui/material";
 import {useState} from "react";
-import {filterByRole, filterByVerification, search, sortByAge, sortByName} from "../../store/slices/usersSlice.ts";
+import {
+    filterByRole,
+    filterByVerification,
+    reset,
+    search,
+    sortByAge,
+    sortByName
+} from "../../store/slices/usersSlice.ts";
 import {useAppDispatch} from "../../store/hooks.ts";
 
 export const Adjustment = () => {
@@ -25,6 +32,7 @@ export const Adjustment = () => {
                 dispatch(filterByVerification())
                 break
             default:
+                dispatch(reset())
                 break
         }
         switch (sort){
@@ -41,6 +49,7 @@ export const Adjustment = () => {
                 dispatch(sortByAge("upwards"))
                 break
             default:
+                dispatch(reset())
                 break
         }
 

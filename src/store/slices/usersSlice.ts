@@ -27,14 +27,15 @@ export const userSlice = createSlice({
                 if (action.payload === "upwards") return a.age - b.age
                 if (action.payload === "downwards") return b.age - a.age
             });
-            console.log("sorted by age")
         },
         sortByName: (state: UsersState, action:PayloadAction<string>)=>{
             state.users = [...state.users].sort((a, b)=>{
                 if (action.payload === "downwards") return a.name.localeCompare(b.name)
                 if (action.payload === "upwards") return b.name.localeCompare(a.name)
             })
-            console.log("sorted by name")
+        },
+        reset: (state: UsersState)=>{
+            state.users = JSON.parse(localStorage.getItem("users"))
         },
         filterByRole:(state: UsersState, action:PayloadAction<string>)=>{
             state.users = JSON.parse(localStorage.getItem("users"))
@@ -81,6 +82,6 @@ export const userSlice = createSlice({
 
 export const usersReducer = userSlice.reducer;
 
-export const {sortByAge, sortByName, filterByRole, filterByVerification, search} = userSlice.actions
+export const {sortByAge, sortByName, filterByRole, filterByVerification, search, reset} = userSlice.actions
 
 export const selectUsers = (state: RootState) => state.users;
