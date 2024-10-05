@@ -1,8 +1,19 @@
+export enum Role {
+    ADMIN = 'ADMIN',
+    USER = 'USER',
+    MODERATOR = 'MODERATOR',
+    GUEST = 'GUEST'
+}
+
 export interface IUser{
-    id:number
-    name:string
-    username:string
-    address:string
-    phone:string
-    avatar:string
+    role: string;
+    address: string;
+    phone: string;
+    name: string;
+    verified: boolean;
+    id: number;
+    avatar: string;
+    email: string;
+    age: number;
+    username: string
 }
