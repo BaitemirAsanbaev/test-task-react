@@ -1,5 +1,4 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
-import type { RootState } from '../store'
 import {IUser} from "../../models/IUser.ts";
 import {fetchUsers} from '../../services.ts'
 
@@ -83,5 +82,3 @@ export const userSlice = createSlice({
 export const usersReducer = userSlice.reducer;
 
 export const {sortByAge, sortByName, filterByRole, filterByVerification, search, reset} = userSlice.actions
-
-export const selectUsers = (state: RootState) => state.users;

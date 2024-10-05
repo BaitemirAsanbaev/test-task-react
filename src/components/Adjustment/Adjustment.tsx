@@ -10,6 +10,7 @@ import {
     sortByName
 } from "../../store/slices/usersSlice.ts";
 import {useAppDispatch} from "../../store/hooks.ts";
+import {toggleCreateWindow} from "../../store/slices/modalSlice.ts";
 
 export const Adjustment = () => {
     const [sort, setSort] = useState<string>("*")
@@ -55,7 +56,7 @@ export const Adjustment = () => {
 
     }
     return <div className={classes.Adjustment}>
-        <button>New user</button>
+        <button onClick={()=>dispatch(toggleCreateWindow())}>New user</button>
         <FormControl>
             <InputLabel id="sort-label">Sort</InputLabel>
             <Select
