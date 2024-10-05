@@ -46,6 +46,18 @@ export const userSlice = createSlice({
             state.users = state.users.filter((user)=>user.verified)
             console.log("filtered by ver")
         },
+        search:(state:UsersState, action:PayloadAction<string>) => {
+            const searchTerm = action.payload.toLowerCase();
+
+            state.users = state.users.filter((user) => {
+                return (
+                    user.name.toLowerCase().includes(searchTerm) ||
+                    user.username.toLowerCase().includes(searchTerm) ||
+                    user.email.toLowerCase().includes(searchTerm) ||
+                    user.address.toLowerCase().includes(searchTerm)
+                );
+            });
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchUsers.pending, (state:UsersState) => {
@@ -69,6 +81,6 @@ export const userSlice = createSlice({
 
 export const usersReducer = userSlice.reducer;
 
-export const {sortByAge, sortByName, filterByRole, filterByVerification} = userSlice.actions
+export const {sortByAge, sortByName, filterByRole, filterByVerification, search} = userSlice.actions
 
 export const selectUsers = (state: RootState) => state.users;

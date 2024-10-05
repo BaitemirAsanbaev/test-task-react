@@ -1,12 +1,13 @@
 import classes from './Adjustment.module.scss'
 import {FormControl, InputLabel, MenuItem, Select, TextField} from "@mui/material";
 import {useState} from "react";
-import {filterByRole, filterByVerification, sortByAge, sortByName} from "../../store/slices/usersSlice.ts";
+import {filterByRole, filterByVerification, search, sortByAge, sortByName} from "../../store/slices/usersSlice.ts";
 import {useAppDispatch} from "../../store/hooks.ts";
 
 export const Adjustment = () => {
-    const [sort, setSort] = useState<string>("")
-    const [filter, setFilter] = useState<string>("")
+    const [sort, setSort] = useState<string>("*")
+    const [filter, setFilter] = useState<string>("*")
+    const [target, setTarget] = useState<string>("")
     const dispatch = useAppDispatch()
     function applySettings(){
 
@@ -51,7 +52,7 @@ export const Adjustment = () => {
             <Select
                 labelId="sort-label"
                 id="sort"
-                value={"*"}
+                value={sort}
                 label="Sort"
                 onChange={(e) => {
                     setSort(e.target.value.toString())
@@ -69,7 +70,7 @@ export const Adjustment = () => {
             <Select
                 labelId="filter-label"
                 id="filter"
-                value={"*"}
+                value={filter}
                 label="Filter"
                 onChange={(e) => {
                     setFilter(e.target.value.toString())
@@ -84,7 +85,7 @@ export const Adjustment = () => {
         </FormControl>
         <button onClick={applySettings}>Apply</button>
 
-        <TextField id="filled-basic" label="Search" variant="filled"/>
-        <button>Search</button>
+        <TextField id="filled-basic" value={target} onChange={(e)=>setTarget(e.target.value)} label="Search" variant="filled"/>
+        <button onClick={()=>dispatch(search(target))}>Search</button>
     </div>
 }
