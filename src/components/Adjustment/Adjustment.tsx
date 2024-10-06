@@ -26,6 +26,9 @@ export const Adjustment = () => {
             case "g":
                 dispatch(filterByRole("GUEST"))
                 break
+            case "m":
+                dispatch(filterByRole("MODERATOR"))
+                break
             case "u":
                 dispatch(filterByRole("USER"))
                 break
@@ -88,6 +91,7 @@ export const Adjustment = () => {
             >
                 <MenuItem value={"*"}>All</MenuItem>
                 <MenuItem value={"a"}>Admins only</MenuItem>
+                <MenuItem value={"m"}>Moderators only</MenuItem>
                 <MenuItem value={"g"}>Guests only</MenuItem>
                 <MenuItem value={"u"}>Users only</MenuItem>
                 <MenuItem value={"v"}>Verified only</MenuItem>

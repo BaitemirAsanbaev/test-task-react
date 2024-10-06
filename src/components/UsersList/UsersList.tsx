@@ -2,7 +2,7 @@ import classes from './UsersList.module.scss'
 import UserCard from "../UserCard/UserCard.tsx";
 import {useAppDispatch, useAppSelector} from "../../store/hooks.ts";
 import {useEffect} from "react";
-import {fetchUsers} from "../../services.ts";
+import {fetchUsers} from "../../store/services.ts";
 
 export default function UsersList() {
 

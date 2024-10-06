@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {IUser} from "../../models/IUser.ts";
-import {fetchUsers} from '../../services.ts'
+import {createUser, fetchUsers} from '../services.ts'
 
 
 type UsersState = {
@@ -71,6 +71,21 @@ export const userSlice = createSlice({
         });
 
         builder.addCase(fetchUsers.rejected, (state:UsersState, action: unknown)=>{
+            state.loading = false;
+            state.error = action.error.message || 'Failed to fetch users';
+        });
+
+        builder.addCase(createUser.pending, (state:UsersState) => {
+            state.loading = true;
+            state.error = null;
+        });
+
+        builder.addCase(createUser.fulfilled, (state:UsersState, action:PayloadAction<IUser>) => {
+            state.loading = false
+            state.users.push(action.payload);
+        });
+
+        builder.addCase(createUser.rejected, (state:UsersState, action: unknown)=>{
             state.loading = false;
             state.error = action.error.message || 'Failed to fetch users';
         });

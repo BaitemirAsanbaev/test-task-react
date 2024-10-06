@@ -4,13 +4,13 @@ import {Adjustment} from "./components/Adjustment/Adjustment.tsx";
 import Modal from "./components/Modal/Modal.tsx";
 import Backdrop from "./components/Modal/Backdrop.tsx";
 import {useAppSelector} from "./store/hooks.ts";
+import CreateUserForm from "./components/CreateUserForm/CreateUserForm.tsx";
 
 function App() {
     const {createWindow, userWindow} = useAppSelector(state => state.modal)
-    console.log(createWindow, userWindow)
     return (
         <div>
-            {createWindow.isOpened&&<Modal><div>create user</div></Modal>}
+            {createWindow.isOpened&&<Modal><CreateUserForm/></Modal>}
             {userWindow.isOpened&&<Modal><div>user info</div></Modal>}
             {createWindow.isOpened&&<Backdrop/>}
             {userWindow.isOpened&&<Backdrop/>}
