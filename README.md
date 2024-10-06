@@ -1,50 +1,62 @@
-# React + TypeScript + Vite
+# Список пользователей
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Stack
+- React
+- Vite
+- TypeScript
+- Redux Toolkit
+- Scss
+- React hook forms
+- axios
+- Material UI
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+###  Установка и запуск проекта
+###### Перед запуском понадобиться установить бэкенд и запустить его
+```shell
+git clone https://github.com/BaitemirAsanbaev/test-task-express.git
+```
+```shell
+cd test-task-express
+npm i
+npm run dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+###### Склонировать репозиторий фронтенда
+```shell
+git clone https://github.com/BaitemirAsanbaev/test-task-react.git
 ```
+
+###### Установить библиотеки и запустить
+```shell
+npm i
+npm run dev
+```
+
+### Функционал
+- Отображение списка пользователей в виде карточек
+- Всплывающее окно с полной информацией о пользователе
+- Возможность добавить нового пользователя
+- Сортировка по имени (a-z и z-a)
+- Сортировка по возрасту (от старшего и от младшего)
+- Фильтрация по роли и по верификации
+- Поиск по имени username email и адресу
+- хранение пользователей в локальном хранилище
+
+### Структура проекта
+###### components
+Переиспользуемые tsx компоненты, испльзуются для ui. Содержат hooks props actions и модульный scss
+###### models
+Модели для типизации пользователей. Содержит enum для ролей и interface для пользователей.
+###### store
+Redux. Содержит:
+- слайсы для отслеживания состояний модальных окон и списка пользователей
+- кастомные dispatch и selector хуки
+- asyncThunk. Запросы на сервер
+- инициализация и конфигурация store
+
+### Backend
+Для этого проекта я решил написать небольшой backend на nodejs express с базой данных в виде json файла.
+Запрос на сервер отправляется в двух случаях:
+- При создании нового пользователся
+- При первой загрузке списка пользователей
+
