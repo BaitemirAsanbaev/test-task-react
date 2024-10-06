@@ -25,12 +25,14 @@ export const userSlice = createSlice({
             state.users = [...state.users].sort((a, b) => {
                 if (action.payload === "upwards") return a.age - b.age
                 if (action.payload === "downwards") return b.age - a.age
+                return a.age - b.age
             });
         },
         sortByName: (state: UsersState, action:PayloadAction<string>)=>{
             state.users = [...state.users].sort((a, b)=>{
                 if (action.payload === "downwards") return a.name.localeCompare(b.name)
                 if (action.payload === "upwards") return b.name.localeCompare(a.name)
+                return a.name.localeCompare(b.name)
             })
         },
         reset: (state: UsersState)=>{

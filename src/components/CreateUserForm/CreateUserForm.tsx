@@ -1,15 +1,12 @@
 import { useForm } from 'react-hook-form';
 import { IUser, Role } from '../../models/IUser';
 import {
-    TextField,
     Button,
-    Checkbox,
-    FormControlLabel,
     MenuItem,
     Select,
     InputLabel,
     FormControl,
-    Grid, AlertTitle,
+    Grid
 } from '@mui/material';
 import {useAppDispatch} from "../../store/hooks.ts";
 import {createUser} from "../../store/services.ts";

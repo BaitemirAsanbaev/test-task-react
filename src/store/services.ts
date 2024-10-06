@@ -20,7 +20,7 @@ export const createUser = createAsyncThunk(
         user.id = users[users.length - 1].id + 1
         users.push(user)
         localStorage.setItem("users", JSON.stringify(users))
-        const res = await axios.post(
+        await axios.post(
             'http://localhost:5000/api/v1/users/create',
             user);
         return user;
