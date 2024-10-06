@@ -6,7 +6,8 @@ import {
     Select,
     InputLabel,
     FormControl,
-    Grid
+    Checkbox,
+    Grid, TextField, FormControlLabel
 } from '@mui/material';
 import {useAppDispatch} from "../../store/hooks.ts";
 import {createUser} from "../../store/services.ts";
